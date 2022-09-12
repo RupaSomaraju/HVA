@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CALCULATOR</title>
+<style>
+body{
+    background-color:rgb(243, 235, 237);
+}
+table{
+    margin:110px 50px 30px 500px;
+    background-color: rgb(247, 251, 247);
+    
+}
+table,td {
+        border: 3px solid rgb(236, 232, 232);
+        text-align: center;
+     }
+td{
+    height:60px;
+    width:60px;
+    
+}
+#calc{
+width: 250px;
+border: 3px solid black;
+border-radius: 3px;
+padding: 20px;
+margin: auto;
+}
+button{
+    font-size:20px;
+    height:40px;
+    width:40px;
+}
+
+</style>
+</head>
+<body>
+    
+ 
+    
+    <table>
+        <tr>
+            <td colspan="4"><input id = "calc" style=font-size:20px;></td>
+        </tr>
+        
+    <div class="btns">
+        <tr>
+        <td><button onclick="fun()">C</button></td>
+        <td><button style=font-size:25px; onclick="cancel()">⬅️</button></td>
+        <td><button onclick="Show('%')">%</button></td>
+        <td><button style=font-size:25px; onclick="Show('/')">÷</button></td>
+        
+    </tr>
+    <tr>
+        <td><button class="a" onclick="Show(1)">1</button></td>
+        <td><button onclick="Show(2)">2</button></td>
+        <td><button onclick="Show(3)">3</button></td>
+        <td><button onclick="Show('*')">X</button></td>
+        
+    </tr>
+    <tr>
+        <td><button onclick="Show(4)">4</button></td>
+        <td><button onclick="Show(5)">5</button></td>
+        <td><button onclick="Show(6)">6</button></td>
+        <td><button style=font-size:30px; onclick="Show('-')">-</button></td>
+        
+    </tr>
+    <tr>
+        <td><button id="btn" onclick="Show(7)">7</button></td>
+        <td><button onclick="Show(8)">8</button></td>
+        <td><button onclick="Show(9)">9</button></td>
+        <td><button onclick="Show('+')">+</button></td>
+        
+    </tr>
+    <tr>
+        <td><button onclick="Show('')">xx</button></td>
+        <td><button onclick="Show(0)">0</button></td>
+        <td><button onclick="Show('.')">.</button></td>
+        <td><button onclick="exe()">=</button></td>
+        
+    </tr>
+    
+    </div>
+</table>
+<script>
+    var val=document.getElementById("calc");
+    function Show(v){
+        val.value+=v;
+        
+
+    }
+    
+
+    function fun(){
+             
+          val.value="";
+          
+    }
+    
+    function exe(){
+        val.value=eval(val.value);
+    }
+    function cancel(){
+        val.value=val.value.substr(0,val.value.length-1);
+    }
+    
+</script>
+
+    
+
+</body>
+</html>
