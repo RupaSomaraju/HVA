@@ -9,12 +9,12 @@ let window= document.querySelector(".submit");
 window.addEventListener("click", function() => {
 
 	// API ID
-	const api = "f56cca4dbcc166f2f6fca2e5b294c01d";
+	const api = "enter ur api";
 
 	// API URL
 	const base =
 `http://api.openweathermap.org/data/2.5/weather?q=` +
-inputval.value+'&api=f56cca4dbcc166f2f6fca2e5b294c01d';
+inputval.value+&api';
 
 	// Calling the API
 	fetch(base)
