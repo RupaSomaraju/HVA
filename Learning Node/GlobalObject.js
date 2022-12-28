@@ -8,7 +8,7 @@ setInterval(function(){
     console.log(time + "seconds have passed");
 },2000);
 */
-
+//this is used to stop the function process
 var time=0;
 var timer=setInterval(function(){
     time=time+2;
