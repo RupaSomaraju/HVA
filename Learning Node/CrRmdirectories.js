@@ -27,3 +27,5 @@ fs.unlink('./stuff/writeMe.txt',function(){
     fs.rmdir('stuff');
 });
 //fs.rmdir('stuff');
+
+

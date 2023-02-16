@@ -1,0 +1,21 @@
+
+             request
+client       -------->          server
+
+
+               response
+client      <-------------       server
+
+
+
+
+protocol:   A protocol is a set of communication rules, that two sides agree to use when communicating
+
+  --> data gets divided into smaller particles known as pockets by using some protocols known as FTP or HTTP
+FTP(file transfer protocol)
+HTTP(HyperText transfer protocol)-usually for websites
+
+port : A program running on a computer can listen for requests sent to a particular port number
+      e.g: port 3000 for node.js connection
+
+This port number is used for identify the particular functionality the user want.
