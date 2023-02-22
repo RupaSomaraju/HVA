@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        
+        <link href="/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+<body>
+    <h1 class="title">Welcome to Students REST API </h1>
+    <div id="homepage">
+        <h1>Hire student in your area</h1>
+        <div id="students"></div>
+    </div>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+
+    <!--create react component-->
+    <script type="text/babel">
+        
+        var Students = React.createClass({
+            getInitialState:function(){
+                return({
+                 students:[]   
+                });
+            },
+            
+            render:function(student){
+                var students = this.state.students;
+                console.log(students);
+                students = students.map(function(student,index){
+                  return(
+                    <li key={index}>
+                        <span className={student.available}></span>
+                        <span className="name">{student.name}</span>
+                        <span className="id">{student.id}</span>
+                        <span className="role">{student.role}</span>
+                        <span className="dist">{Math.floor(student.dis/1000)}km</span>
+
+                        </li>
+                    );
+                  });
+                    
+        
+            return(
+                 <div id="student-container">
+                <form id="search" onSubmit={this.handleSubmit}>
+                <label>Enter your latitude</label> 
+                 <input type="text" ref="lat" placeholder="latitude" required/>
+                 <label>Enter your longitude</label> 
+                 <input type="text" ref="lng" placeholder="longitude" required/>
+                 <input type="submit" value="Find Techies"/>
+                </form>
+                <ul>{students}</ul>
+               </div>
+            );
+            },
+            handleSubmit:function(e){
+              e.preventDefault();
+              var lng=this.refs.lng.value;
+              var lat=this.refs.lat.value;
+
+
+              fetch('/api/students?lng='+lng+'&lat='+lat).then(function(data){
+              return data.json();
+              }).then(json => {
+                this.setState({
+                    students:json
+                });
+              });
+
+            },
+            
+        });
+        ReactDOM.render(<Students/>,document.getElementById('students'));
+    </script> 
+    
+</body>
+
+
+ </html>
