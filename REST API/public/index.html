@@ -4,8 +4,8 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        
-        <link href="/styles.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" href="#">
+         <link href="/styles.css" rel="stylesheet" type="text/css"/>
     </head>
 <body>
     <h1 class="title">Welcome to Students REST API </h1>
@@ -22,13 +22,13 @@
     <script type="text/babel">
         
         var Students = React.createClass({
-            getInitialState:function(){
+            getInitialState: function(){
                 return({
                  students:[]   
                 });
             },
-            
-            render:function(student){
+           /* 
+            render:function(){
                 var students = this.state.students;
                 console.log(students);
                 students = students.map(function(student,index){
@@ -36,14 +36,22 @@
                     <li key={index}>
                         <span className={student.available}></span>
                         <span className="name">{student.name}</span>
-                        <span className="id">{student.id}</span>
-                        <span className="role">{student.role}</span>
-                        <span className="dist">{Math.floor(student.dis/1000)}km</span>
-
+                        <span className="rank">{student.rank}</span>
+                       
                         </li>
                     );
                   });
-                    
+                    */
+                    render: function(){
+                var students = this.state.students;
+                console.log("this is data",students);
+                students = <li>
+                            <span className={students.available}></span>
+                            <span className="name">{students.name}</span>
+                            <span className="rank">{students.rank}</span>
+                        </li>;
+
+                console.log(students);
         
             return(
                  <div id="student-container">
@@ -52,7 +60,7 @@
                  <input type="text" ref="lat" placeholder="latitude" required/>
                  <label>Enter your longitude</label> 
                  <input type="text" ref="lng" placeholder="longitude" required/>
-                 <input type="submit" value="Find Techies"/>
+                 <input type="submit" value="Find Students"/>
                 </form>
                 <ul>{students}</ul>
                </div>
@@ -60,11 +68,12 @@
             },
             handleSubmit:function(e){
               e.preventDefault();
-              var lng=this.refs.lng.value;
+              
               var lat=this.refs.lat.value;
+              var lng=this.refs.lng.value;
 
 
-              fetch('/api/students?lng='+lng+'&lat='+lat).then(function(data){
+              fetch('/api/students?lat='+lat+'&lng='+lng).then(function(data){
               return data.json();
               }).then(json => {
                 this.setState({

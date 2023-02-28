@@ -24,14 +24,30 @@ router.get('/students', function (req, res, next) {
      }).catch(next);
      */
 
-    Student.aggregate([{ $geoNear: { near: 
-        { type: "point", coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)] },
-         spherical: true, maxDistance: 100000, distanceField: "dist.calculated", spherical: true } }]).then(function (students)
+   /* Student.aggregate([{
+         $geoNear: { 
+             near:  { 
+                 type: "point",
+                  coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)] 
+                },
+         spherical: true,
+          maxDistance: 100000,
+           distanceField: "dist.calculated", 
+           spherical: true
+         } }]).then(function (students)
           {
         res.send(students);
 
-    });
+    }).catch(next);*/
+
+    Student.findOne({id:req.query.id}).then(function(students){
+        res.send(students);
+      })
+
+
+
 });
+
 
 
 //create/add a new student to the db
@@ -49,8 +65,7 @@ router.post('/students', function (req, res, next) {
         /*res.send({
         type:'POST',
         name:req.body.name,
-        rank: req.body.rank git push --set-upstream origin master
-
+        rank: req.body.rank
         */
     }).catch(next);
 
