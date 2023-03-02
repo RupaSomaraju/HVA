@@ -9,26 +9,13 @@ router.get('/students', function (req, res, next) {
     });
     
     */
-    //res.send(req.params);
-    //parseFloat(req.query.lng),parseFloat(req.query.lat)]
-    /*
-    Student.aggregate([{
-        $geoNear:{
-            near:
-                 {type:'point',coordinates:[parseFloat(req.query.lng),parseFloat(req.query.lat)]},
-                 maxDistance:100000,
-                 distanceField:'distance.calculated',
-                 spherical:true }
-     }]).then(function(student){
-         res.send(student);
-     }).catch(next);
-     */
+   
 
     Student.aggregate([{ $geoNear: { near: 
         { type: "point", coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)] },
          spherical: true, maxDistance: 100000, distanceField: "dist.calculated", spherical: true } }]).then(function (students)
           {
-        res.send(students);
+        res.json(students);
 
     });
 });
@@ -40,7 +27,7 @@ router.post('/students', function (req, res, next) {
     student.save();
     */
     Student.create(req.body).then(function (student) {
-        res.send(student);
+        res.json(student);
         /*type:'POST',
         name:req.body.name,
         rank: req.body.rank
@@ -61,7 +48,7 @@ router.post('/students', function (req, res, next) {
 router.put('/students/:id', function (req, res, next) {
     Student.findByIdAndUpdate({ _id: req.params.id }, req.body).then(function (student) {
         Student.findOne({ _id: req.params.id }).then(function (student) {
-            res.send(student);
+            res.json(student);
         });
 
     });
@@ -71,7 +58,7 @@ router.put('/students/:id', function (req, res, next) {
 router.delete('/students/:id', function (req, res, next) {
     //console.log(req.params.id);
     Student.findByIdAndRemove({ _id: req.params.id }).then(function (student) {
-        res.send(student);
+        res.json(student);
     });
     //res.send({type:'DELETE'});
 });
