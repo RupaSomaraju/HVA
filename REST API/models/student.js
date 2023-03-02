@@ -36,5 +36,5 @@ const studentSchema=new Schema({
     geometry:GeoSchema
 });
 
-const Student = mongoose.model('student',studentSchema);
+const Student = mongoose.model('Student',studentSchema);
 module.exports=Student;
